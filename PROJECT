@@ -1,3 +1,4 @@
 domain: kubeplug.com
+multigroup: true
 repo: github.com/kubeplug/kubeplug
 version: "2"
