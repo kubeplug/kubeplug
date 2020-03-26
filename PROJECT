@@ -1,4 +1,8 @@
 domain: kubeplug.com
 multigroup: true
 repo: github.com/kubeplug/kubeplug
+resources:
+- group: kubeplug
+  kind: RabbitMQ
+  version: v1beta1
 version: "2"
