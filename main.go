@@ -27,7 +27,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
 	kubeplugv1beta1 "github.com/kubeplug/kubeplug/apis/kubeplug/v1beta1"
-	kubeplugcontroller "github.com/kubeplug/kubeplug/controllers/kubeplug"
+	rabbitmqcontroller "github.com/kubeplug/kubeplug/controllers/rabbitmq"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -66,7 +66,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&kubeplugcontroller.RabbitMQReconciler{
+	if err = (&rabbitmqcontroller.RabbitMQReconciler{
 		Client: mgr.GetClient(),
 		Log:    ctrl.Log.WithName("controllers").WithName("RabbitMQ"),
 		Scheme: mgr.GetScheme(),
