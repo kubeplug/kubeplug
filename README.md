@@ -1,2 +1,2 @@
-# kubeplug
+# KubePlug
 Kubernetes Plugins Operator. 
