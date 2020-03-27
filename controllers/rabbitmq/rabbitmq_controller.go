@@ -38,10 +38,21 @@ type RabbitMQReconciler struct {
 // +kubebuilder:rbac:groups=kubeplug.com,resources=rabbitmqs/status,verbs=get;update;patch
 
 func (r *RabbitMQReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
-	_ = context.Background()
-	_ = r.Log.WithValues("rabbitmq", req.NamespacedName)
+	ctx := context.Background()
+	log := r.Log.WithValues("rabbitmq", req.NamespacedName)
 
 	// your logic here
+
+	var rmq kubeplugv1beta1.RabbitMQ
+	if err := r.Get(ctx, req.NamespacedName, &rmq); err != nil {
+		log.Error(err, "unable to fetch Rabbitmq")
+		// we'll ignore not-found errors, since they can't be fixed by an immediate
+		// requeue (we'll need to wait for a new notification), and we can get them
+		// on deleted requests.
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+
+	log.Info("rabbitmq found", rmq.Namespace, rmq.Name)
 
 	return ctrl.Result{}, nil
 }
