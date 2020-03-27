@@ -1,0 +1,11 @@
+resources:
+- kubeplug.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: controller
+  newName: kubeplug/kubeplug
+  newTag: 0.0.1-alpha
+- name: kubeplug
+  newName: kubeplug/kubeplug
+  newTag: 0.0.1-alpha
